@@ -1,0 +1,1105 @@
+
+//wire9 Nstring n[int32] data[n]
+//wire9 RequestOrResponse n[int32] kind[n]
+//wire9 RequestHeader apikey[,int16]  apiversion[,int16]  correlationid[,int32]  clientid[,Nstring]
+//wire9 ResponseHeader correlationid[,int32]
+//wire9 data partition[,int32] recordset[,Records]
+//wire9 topicdata topic[,topic] data[,data]
+//wire9 partitions partition[,int32] fetchoffset[,int64]  maxbytes[,int32]
+//wire9 partitions5 partition[,int32] fetchoffset[,int64] log_start_offset[,int32] maxbytes[,int32] 
+
+//wire9 partitionresponses0 partition[,int32] errorcode[,int16] baseoffset[,int64]
+//wire9 partitionresponses1 partition[,int32] errorcode[,int16] baseoffset[,int64]
+//wire9 partitionresponses2 partition[,int32] errorcode[,int16] baseoffset[,int64] logappendtime[,int64]
+//wire9 partitionresponses3 partition[,int32] errorcode[,int16] baseoffset[,int64] logappendtime[,int64]
+
+//wire9 ProduceReq0 acks[,int16] timeout[,int32] topicdata[,topicdata] 
+//wire9 ProduceReq1 acks[,int16] timeout[,int32] topicdata[,topicdata]
+//wire9 ProduceReq2 acks[,int16] timeout[,int32] topicdata[,topicdata]
+//wire9 ProduceReq3 transactionalid[,transactionalid] acks[,int16] timeout[,int32] topicdata[,topicdata]
+
+//wire9 ProduceRep0 topic[String] partitionresponses0[,partitionresponses0]
+//wire9 ProduceRep1 topic[String] partitionresponses0[,partitionresponses0] throttleditems[,int32]
+//wire9 ProduceRep2 topic[String] partitionresponses1[,partitionresponses1] throttleditems[,int32]
+//wire9 ProduceRep3 topic[String] partitionresponses1[,partitionresponses1] throttleditems[,int32]
+
+//wire9 topics topic[,String] partitions[,partitions]
+//wire9 FetchReq0 replicaid[,int32] maxwaittime[,int32] minbytes[,int32] topics[,topics]
+
+FetchReq0 => replicaid maxwaittime minbytes [topics] 
+  replicaid[,int32
+  maxwaittime[,int32
+  minbytes[,int32
+  topics[,topic [partitions] 
+    topic[,String
+    partitions 
+
+FetchReq1 => replicaid maxwaittime minbytes [topics] 
+  replicaid => int32
+  maxwaittime => int32
+  minbytes => int32
+  topics => topic [partitions] 
+    topic => String
+    partitions 
+
+FetchReq2 => replicaid maxwaittime minbytes [topics] 
+  replicaid => int32
+  maxwaittime => int32
+  minbytes => int32
+  topics => topic [partitions] 
+    topic => String
+    partitions 
+
+FetchReq3 => replicaid maxwaittime minbytes maxbytes [topics] 
+  replicaid => int32
+  maxwaittime => int32
+  minbytes => int32
+  maxbytes => int32
+  topics => topic [partitions] 
+    topic => String
+    partitions 
+
+FetchReq4 => replicaid maxwaittime minbytes maxbytes isolationlevel [topics] 
+  replicaid => int32
+  maxwaittime => int32
+  minbytes => int32
+  maxbytes => int32
+  isolationlevel => int8
+  topics => topic [partitions] 
+    topic => String
+    partitions 
+
+FetchReq5 => replicaid maxwaittime minbytes maxbytes isolationlevel [topics] 
+  replicaid => int32
+  maxwaittime => int32
+  minbytes => int32
+  maxbytes => int32
+  isolationlevel => int8
+  topics => topic [partitions] 
+    topic => String
+    partitions5
+
+FetchRep => [responses] 
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partitionheader recordset 
+      partitionheader => partition errorcode highwatermark 
+        partition => int32
+        errorcode => int16
+        highwatermark => int64
+      recordset => RECORDS
+
+FetchRep => throttletimems [responses] 
+  throttletimems => int32
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partitionheader recordset 
+      partitionheader => partition errorcode highwatermark 
+        partition => int32
+        errorcode => int16
+        highwatermark => int64
+      recordset => RECORDS
+
+FetchRep => throttletimems [responses] 
+  throttletimems => int32
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partitionheader recordset 
+      partitionheader => partition errorcode highwatermark 
+        partition => int32
+        errorcode => int16
+        highwatermark => int64
+      recordset => RECORDS
+
+FetchRep => throttletimems [responses] 
+  throttletimems => int32
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partitionheader recordset 
+      partitionheader => partition errorcode highwatermark 
+        partition => int32
+        errorcode => int16
+        highwatermark => int64
+      recordset => RECORDS
+
+FetchRep => throttletimems [responses] 
+  throttletimems => int32
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partitionheader recordset 
+      partitionheader => partition errorcode highwatermark laststableoffset [abortedtransactions] 
+        partition => int32
+        errorcode => int16
+        highwatermark => int64
+        laststableoffset => int64
+        abortedtransactions => producerid firstoffset 
+          producerid => int64
+          firstoffset => int64
+      recordset => RECORDS
+
+FetchRep => throttletimems [responses] 
+  throttletimems => int32
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partitionheader recordset 
+      partitionheader => partition errorcode highwatermark laststableoffset logstartoffset [abortedtransactions] 
+        partition => int32
+        errorcode => int16
+        highwatermark => int64
+        laststableoffset => int64
+        logstartoffset => int64
+        abortedtransactions => producerid firstoffset 
+          producerid => int64
+          firstoffset => int64
+      recordset => RECORDS
+
+OffsetsReq => replicaid [topics] 
+  replicaid => int32
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition timestamp maxnumoffsets 
+      partition => int32
+      timestamp => int64
+      maxnumoffsets => int32
+
+OffsetsReq => replicaid [topics] 
+  replicaid => int32
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition timestamp 
+      partition => int32
+      timestamp => int64
+
+OffsetsReq => replicaid isolationlevel [topics] 
+  replicaid => int32
+  isolationlevel => int8
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition timestamp 
+      partition => int32
+      timestamp => int64
+
+OffsetsRep => [responses] 
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partition errorcode [offsets] 
+      partition => int32
+      errorcode => int16
+      offsets => int64
+
+OffsetsRep => [responses] 
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partition errorcode timestamp offset 
+      partition => int32
+      errorcode => int16
+      timestamp => int64
+      offset => int64
+
+OffsetsRep => throttletimems [responses] 
+  throttletimems => int32
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partition errorcode timestamp offset 
+      partition => int32
+      errorcode => int16
+      timestamp => int64
+      offset => int64
+
+MetadataReq => [topics] 
+  topics => String
+
+MetadataReq => [topics] 
+  topics => String
+
+MetadataReq => [topics] 
+  topics => String
+
+MetadataReq => [topics] 
+  topics => String
+
+MetadataReq => [topics] allowautotopiccreation 
+  topics => String
+  allowautotopiccreation => BOOLEAN
+
+MetadataRep => [brokers] [topicmetadata] 
+  brokers => nodeid host port 
+    nodeid => int32
+    host => String
+    port => int32
+  topicmetadata => topicerrorcode topic [partitionmetadata] 
+    topicerrorcode => int16
+    topic => String
+    partitionmetadata => partitionerrorcode partitionid leader [replicas] [isr] 
+      partitionerrorcode => int16
+      partitionid => int32
+      leader => int32
+      replicas => int32
+      isr => int32
+
+MetadataRep => [brokers] controllerid [topicmetadata] 
+  brokers => nodeid host port rack 
+    nodeid => int32
+    host => String
+    port => int32
+    rack => Nstring
+  controllerid => int32
+  topicmetadata => topicerrorcode topic isinternal [partitionmetadata] 
+    topicerrorcode => int16
+    topic => String
+    isinternal => BOOLEAN
+    partitionmetadata => partitionerrorcode partitionid leader [replicas] [isr] 
+      partitionerrorcode => int16
+      partitionid => int32
+      leader => int32
+      replicas => int32
+      isr => int32
+
+MetadataRep => [brokers] clusterid controllerid [topicmetadata] 
+  brokers => nodeid host port rack 
+    nodeid => int32
+    host => String
+    port => int32
+    rack => Nstring
+  clusterid => Nstring
+  controllerid => int32
+  topicmetadata => topicerrorcode topic isinternal [partitionmetadata] 
+    topicerrorcode => int16
+    topic => String
+    isinternal => BOOLEAN
+    partitionmetadata => partitionerrorcode partitionid leader [replicas] [isr] 
+      partitionerrorcode => int16
+      partitionid => int32
+      leader => int32
+      replicas => int32
+      isr => int32
+
+MetadataRep => throttletimems [brokers] clusterid controllerid [topicmetadata] 
+  throttletimems => int32
+  brokers => nodeid host port rack 
+    nodeid => int32
+    host => String
+    port => int32
+    rack => Nstring
+  clusterid => Nstring
+  controllerid => int32
+  topicmetadata => topicerrorcode topic isinternal [partitionmetadata] 
+    topicerrorcode => int16
+    topic => String
+    isinternal => BOOLEAN
+    partitionmetadata => partitionerrorcode partitionid leader [replicas] [isr] 
+      partitionerrorcode => int16
+      partitionid => int32
+      leader => int32
+      replicas => int32
+      isr => int32
+
+MetadataRep => throttletimems [brokers] clusterid controllerid [topicmetadata] 
+  throttletimems => int32
+  brokers => nodeid host port rack 
+    nodeid => int32
+    host => String
+    port => int32
+    rack => Nstring
+  clusterid => Nstring
+  controllerid => int32
+  topicmetadata => topicerrorcode topic isinternal [partitionmetadata] 
+    topicerrorcode => int16
+    topic => String
+    isinternal => BOOLEAN
+    partitionmetadata => partitionerrorcode partitionid leader [replicas] [isr] 
+      partitionerrorcode => int16
+      partitionid => int32
+      leader => int32
+      replicas => int32
+      isr => int32
+
+LeaderAndIsrReq => controllerid controllerepoch [partitionstates] [liveleaders] 
+  controllerid => int32
+  controllerepoch => int32
+  partitionstates => topic partition controllerepoch leader leaderepoch [isr] zkversion [replicas] 
+    topic => String
+    partition => int32
+    controllerepoch => int32
+    leader => int32
+    leaderepoch => int32
+    isr => int32
+    zkversion => int32
+    replicas => int32
+  liveleaders => id host port 
+    id => int32
+    host => String
+    port => int32
+
+LeaderAndIsrRep => errorcode [partitions] 
+  errorcode => int16
+  partitions => topic partition errorcode 
+    topic => String
+    partition => int32
+    errorcode => int16
+
+StopReplicaReq => controllerid controllerepoch deletepartitions [partitions] 
+  controllerid => int32
+  controllerepoch => int32
+  deletepartitions => BOOLEAN
+  partitions => topic partition 
+    topic => String
+    partition => int32
+
+StopReplicaRep => errorcode [partitions] 
+  errorcode => int16
+  partitions => topic partition errorcode 
+    topic => String
+    partition => int32
+    errorcode => int16
+
+UpdateMetadataReq => controllerid controllerepoch [partitionstates] [livebrokers] 
+  controllerid => int32
+  controllerepoch => int32
+  partitionstates => topic partition controllerepoch leader leaderepoch [isr] zkversion [replicas] 
+    topic => String
+    partition => int32
+    controllerepoch => int32
+    leader => int32
+    leaderepoch => int32
+    isr => int32
+    zkversion => int32
+    replicas => int32
+  livebrokers => id host port 
+    id => int32
+    host => String
+    port => int32
+
+UpdateMetadataReq => controllerid controllerepoch [partitionstates] [livebrokers] 
+  controllerid => int32
+  controllerepoch => int32
+  partitionstates => topic partition controllerepoch leader leaderepoch [isr] zkversion [replicas] 
+    topic => String
+    partition => int32
+    controllerepoch => int32
+    leader => int32
+    leaderepoch => int32
+    isr => int32
+    zkversion => int32
+    replicas => int32
+  livebrokers => id [endpoints] 
+    id => int32
+    endpoints => port host securityprotocoltype 
+      port => int32
+      host => String
+      securityprotocoltype => int16
+
+UpdateMetadataReq => controllerid controllerepoch [partitionstates] [livebrokers] 
+  controllerid => int32
+  controllerepoch => int32
+  partitionstates => topic partition controllerepoch leader leaderepoch [isr] zkversion [replicas] 
+    topic => String
+    partition => int32
+    controllerepoch => int32
+    leader => int32
+    leaderepoch => int32
+    isr => int32
+    zkversion => int32
+    replicas => int32
+  livebrokers => id [endpoints] rack 
+    id => int32
+    endpoints => port host securityprotocoltype 
+      port => int32
+      host => String
+      securityprotocoltype => int16
+    rack => Nstring
+
+UpdateMetadataReq => controllerid controllerepoch [partitionstates] [livebrokers] 
+  controllerid => int32
+  controllerepoch => int32
+  partitionstates => topic partition controllerepoch leader leaderepoch [isr] zkversion [replicas] 
+    topic => String
+    partition => int32
+    controllerepoch => int32
+    leader => int32
+    leaderepoch => int32
+    isr => int32
+    zkversion => int32
+    replicas => int32
+  livebrokers => id [endpoints] rack 
+    id => int32
+    endpoints => port host listenername securityprotocoltype 
+      port => int32
+      host => String
+      listenername => String
+      securityprotocoltype => int16
+    rack => Nstring
+
+UpdateMetadataRep => errorcode 
+  errorcode => int16
+
+UpdateMetadataRep => errorcode 
+  errorcode => int16
+
+UpdateMetadataRep => errorcode 
+  errorcode => int16
+
+UpdateMetadataRep => errorcode 
+  errorcode => int16
+
+ControlledShutdownReq => brokerid 
+  brokerid => int32
+
+ControlledShutdownRep => errorcode [partitionsremaining] 
+  errorcode => int16
+  partitionsremaining => topic partition 
+    topic => String
+    partition => int32
+
+OffsetCommitReq => groupid [topics] 
+  groupid => String
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition offset metadata 
+      partition => int32
+      offset => int64
+      metadata => Nstring
+
+OffsetCommitReq => groupid groupgenerationid memberid [topics] 
+  groupid => String
+  groupgenerationid => int32
+  memberid => String
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition offset timestamp metadata 
+      partition => int32
+      offset => int64
+      timestamp => int64
+      metadata => Nstring
+
+OffsetCommitReq => groupid groupgenerationid memberid retentiontime [topics] 
+  groupid => String
+  groupgenerationid => int32
+  memberid => String
+  retentiontime => int64
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition offset metadata 
+      partition => int32
+      offset => int64
+      metadata => Nstring
+
+OffsetCommitReq => groupid groupgenerationid memberid retentiontime [topics] 
+  groupid => String
+  groupgenerationid => int32
+  memberid => String
+  retentiontime => int64
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition offset metadata 
+      partition => int32
+      offset => int64
+      metadata => Nstring
+
+OffsetCommitRep => [responses] 
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partition errorcode 
+      partition => int32
+      errorcode => int16
+
+OffsetCommitRep => [responses] 
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partition errorcode 
+      partition => int32
+      errorcode => int16
+
+OffsetCommitRep => [responses] 
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partition errorcode 
+      partition => int32
+      errorcode => int16
+
+OffsetCommitRep => throttletimems [responses] 
+  throttletimems => int32
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partition errorcode 
+      partition => int32
+      errorcode => int16
+
+OffsetFetchReq => groupid [topics] 
+  groupid => String
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition 
+      partition => int32
+
+OffsetFetchReq => groupid [topics] 
+  groupid => String
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition 
+      partition => int32
+
+OffsetFetchReq => groupid [topics] 
+  groupid => String
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition 
+      partition => int32
+
+OffsetFetchReq => groupid [topics] 
+  groupid => String
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition 
+      partition => int32
+
+OffsetFetchRep => [responses] 
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partition offset metadata errorcode 
+      partition => int32
+      offset => int64
+      metadata => Nstring
+      errorcode => int16
+
+OffsetFetchRep => [responses] 
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partition offset metadata errorcode 
+      partition => int32
+      offset => int64
+      metadata => Nstring
+      errorcode => int16
+
+OffsetFetchRep => [responses] errorcode 
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partition offset metadata errorcode 
+      partition => int32
+      offset => int64
+      metadata => Nstring
+      errorcode => int16
+  errorcode => int16
+
+OffsetFetchRep => throttletimems [responses] errorcode 
+  throttletimems => int32
+  responses => topic [partitionresponses] 
+    topic => String
+    partitionresponses => partition offset metadata errorcode 
+      partition => int32
+      offset => int64
+      metadata => Nstring
+      errorcode => int16
+  errorcode => int16
+
+FindCoordinatorReq => groupid 
+  groupid => String
+
+FindCoordinatorReq => coordinatorkey coordinatortype 
+  coordinatorkey => String
+  coordinatortype => int8
+
+FindCoordinatorRep => errorcode coordinator 
+  errorcode => int16
+  coordinator => nodeid host port 
+    nodeid => int32
+    host => String
+    port => int32
+
+FindCoordinatorRep => throttletimems errorcode errormessage coordinator 
+  throttletimems => int32
+  errorcode => int16
+  errormessage => Nstring
+  coordinator => nodeid host port 
+    nodeid => int32
+    host => String
+    port => int32
+
+JoinGroupReq => groupid sessiontimeout memberid protocoltype [groupprotocols] 
+  groupid => String
+  sessiontimeout => int32
+  memberid => String
+  protocoltype => String
+  groupprotocols => protocolname protocolmetadata 
+    protocolname => String
+    protocolmetadata => BYTES
+
+JoinGroupReq => groupid sessiontimeout rebalancetimeout memberid protocoltype [groupprotocols] 
+  groupid => String
+  sessiontimeout => int32
+  rebalancetimeout => int32
+  memberid => String
+  protocoltype => String
+  groupprotocols => protocolname protocolmetadata 
+    protocolname => String
+    protocolmetadata => BYTES
+
+JoinGroupReq => groupid sessiontimeout rebalancetimeout memberid protocoltype [groupprotocols] 
+  groupid => String
+  sessiontimeout => int32
+  rebalancetimeout => int32
+  memberid => String
+  protocoltype => String
+  groupprotocols => protocolname protocolmetadata 
+    protocolname => String
+    protocolmetadata => BYTES
+
+JoinGroupRep => errorcode generationid groupprotocol leaderid memberid [members] 
+  errorcode => int16
+  generationid => int32
+  groupprotocol => String
+  leaderid => String
+  memberid => String
+  members => memberid membermetadata 
+    memberid => String
+    membermetadata => BYTES
+
+JoinGroupRep => errorcode generationid groupprotocol leaderid memberid [members] 
+  errorcode => int16
+  generationid => int32
+  groupprotocol => String
+  leaderid => String
+  memberid => String
+  members => memberid membermetadata 
+    memberid => String
+    membermetadata => BYTES
+
+JoinGroupRep => throttletimems errorcode generationid groupprotocol leaderid memberid [members] 
+  throttletimems => int32
+  errorcode => int16
+  generationid => int32
+  groupprotocol => String
+  leaderid => String
+  memberid => String
+  members => memberid membermetadata 
+    memberid => String
+    membermetadata => BYTES
+
+HeartbeatReq => groupid groupgenerationid memberid 
+  groupid => String
+  groupgenerationid => int32
+  memberid => String
+
+HeartbeatReq => groupid groupgenerationid memberid 
+  groupid => String
+  groupgenerationid => int32
+  memberid => String
+
+HeartbeatRep => errorcode 
+  errorcode => int16
+
+HeartbeatRep => throttletimems errorcode 
+  throttletimems => int32
+  errorcode => int16
+
+LeaveGroupReq => groupid memberid 
+  groupid => String
+  memberid => String
+
+LeaveGroupReq => groupid memberid 
+  groupid => String
+  memberid => String
+
+LeaveGroupRep => errorcode 
+  errorcode => int16
+
+LeaveGroupRep => throttletimems errorcode 
+  throttletimems => int32
+  errorcode => int16
+
+SyncGroupReq => groupid generationid memberid [groupassignment] 
+  groupid => String
+  generationid => int32
+  memberid => String
+  groupassignment => memberid memberassignment 
+    memberid => String
+    memberassignment => BYTES
+
+SyncGroupReq => groupid generationid memberid [groupassignment] 
+  groupid => String
+  generationid => int32
+  memberid => String
+  groupassignment => memberid memberassignment 
+    memberid => String
+    memberassignment => BYTES
+
+SyncGroupRep => errorcode memberassignment 
+  errorcode => int16
+  memberassignment => BYTES
+
+SyncGroupRep => throttletimems errorcode memberassignment 
+  throttletimems => int32
+  errorcode => int16
+  memberassignment => BYTES
+
+DescribeGroupsReq => [groupids] 
+  groupids => String
+
+DescribeGroupsReq => [groupids] 
+  groupids => String
+
+DescribeGroupsRep => [groups] 
+  groups => errorcode groupid state protocoltype protocol [members] 
+    errorcode => int16
+    groupid => String
+    state => String
+    protocoltype => String
+    protocol => String
+    members => memberid clientid clienthost membermetadata memberassignment 
+      memberid => String
+      clientid => String
+      clienthost => String
+      membermetadata => BYTES
+      memberassignment => BYTES
+
+DescribeGroupsRep => throttletimems [groups] 
+  throttletimems => int32
+  groups => errorcode groupid state protocoltype protocol [members] 
+    errorcode => int16
+    groupid => String
+    state => String
+    protocoltype => String
+    protocol => String
+    members => memberid clientid clienthost membermetadata memberassignment 
+      memberid => String
+      clientid => String
+      clienthost => String
+      membermetadata => BYTES
+      memberassignment => BYTES
+
+
+ListGroupsReq => 
+
+ListGroupsRep => errorcode [groups] 
+  errorcode => int16
+  groups => groupid protocoltype 
+    groupid => String
+    protocoltype => String
+
+ListGroupsRep => throttletimems errorcode [groups] 
+  throttletimems => int32
+  errorcode => int16
+  groups => groupid protocoltype 
+    groupid => String
+    protocoltype => String
+
+SaslHandshakeReq => mechanism 
+  mechanism => String
+
+SaslHandshakeRep => errorcode [enabledmechanisms] 
+  errorcode => int16
+  enabledmechanisms => String
+
+ApiVersionsReq => 
+
+ApiVersionsReq => 
+
+ApiVersionsRep => errorcode [apiversions] 
+  errorcode => int16
+  apiversions => apikey minversion maxversion 
+    apikey => int16
+    minversion => int16
+    maxversion => int16
+
+ApiVersionsRep => errorcode [apiversions] throttletimems 
+  errorcode => int16
+  apiversions => apikey minversion maxversion 
+    apikey => int16
+    minversion => int16
+    maxversion => int16
+  throttletimems => int32
+
+CreateTopicsReq => [createtopicrequests] timeout 
+  createtopicrequests => topic numpartitions replicationfactor [replicaassignment] [configentries] 
+    topic => String
+    numpartitions => int32
+    replicationfactor => int16
+    replicaassignment => partitionid [replicas] 
+      partitionid => int32
+      replicas => int32
+    configentries => configname configvalue 
+      configname => String
+      configvalue => Nstring
+  timeout => int32
+
+CreateTopicsReq => [createtopicrequests] timeout validateonly 
+  createtopicrequests => topic numpartitions replicationfactor [replicaassignment] [configentries] 
+    topic => String
+    numpartitions => int32
+    replicationfactor => int16
+    replicaassignment => partitionid [replicas] 
+      partitionid => int32
+      replicas => int32
+    configentries => configname configvalue 
+      configname => String
+      configvalue => Nstring
+  timeout => int32
+  validateonly => BOOLEAN
+
+
+CreateTopicsReq => [createtopicrequests] timeout validateonly 
+  createtopicrequests => topic numpartitions replicationfactor [replicaassignment] [configentries] 
+    topic => String
+    numpartitions => int32
+    replicationfactor => int16
+    replicaassignment => partitionid [replicas] 
+      partitionid => int32
+      replicas => int32
+    configentries => configname configvalue 
+      configname => String
+      configvalue => Nstring
+  timeout => int32
+  validateonly => BOOLEAN
+
+CreateTopicsRep => [topicerrors] 
+  topicerrors => topic errorcode 
+    topic => String
+    errorcode => int16
+
+CreateTopicsRep => [topicerrors] 
+  topicerrors => topic errorcode errormessage 
+    topic => String
+    errorcode => int16
+    errormessage => Nstring
+
+CreateTopicsRep => throttletimems [topicerrors] 
+  throttletimems => int32
+  topicerrors => topic errorcode errormessage 
+    topic => String
+    errorcode => int16
+    errormessage => Nstring
+
+DeleteTopicsReq => [topics] timeout 
+  topics => String
+  timeout => int32
+
+DeleteTopicsReq => [topics] timeout 
+  topics => String
+  timeout => int32
+
+DeleteTopicsRep => [topicerrorcodes] 
+  topicerrorcodes => topic errorcode 
+    topic => String
+    errorcode => int16
+
+DeleteTopicsRep => throttletimems [topicerrorcodes] 
+  throttletimems => int32
+  topicerrorcodes => topic errorcode 
+    topic => String
+    errorcode => int16
+
+DeleteRecordsReq => [topics] timeout 
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition offset 
+      partition => int32
+      offset => int64
+  timeout => int32
+
+DeleteRecordsRep => throttletimems [topics] 
+  throttletimems => int32
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition lowwatermark errorcode 
+      partition => int32
+      lowwatermark => int64
+      errorcode => int16
+
+InitProducerIdReq => transactionalid transactiontimeoutms 
+  transactionalid => Nstring
+  transactiontimeoutms => int32
+
+InitProducerIdRep => throttletimems errorcode producerid producerepoch 
+  throttletimems => int32
+  errorcode => int16
+  producerid => int64
+  producerepoch => int16
+
+OffsetForLeaderEpochReq => [topics] 
+  topics => topic [partitions] 
+    topic => String
+    partitions => partitionid leaderepoch 
+      partitionid => int32
+      leaderepoch => int32
+
+OffsetForLeaderEpochRep => [topics] 
+  topics => topic [partitions] 
+    topic => String
+    partitions => errorcode partitionid endoffset 
+      errorcode => int16
+      partitionid => int32
+      endoffset => int64
+
+AddPartitionsToTxnReq => transactionalid producerid producerepoch [topics] 
+  transactionalid => String
+  producerid => int64
+  producerepoch => int16
+  topics => topic [partitions] 
+    topic => String
+    partitions => int32
+
+AddPartitionsToTxnRep => throttletimems [errors] 
+  throttletimems => int32
+  errors => topic [partitionerrors] 
+    topic => String
+    partitionerrors => partition errorcode 
+      partition => int32
+      errorcode => int16
+
+AddOffsetsToTxnReq => transactionalid producerid producerepoch consumergroupid 
+  transactionalid => String
+  producerid => int64
+  producerepoch => int16
+  consumergroupid => String
+
+AddOffsetsToTxnRep => throttletimems errorcode 
+  throttletimems => int32
+  errorcode => int16
+
+EndTxnReq => transactionalid producerid producerepoch transactionresult 
+  transactionalid => String
+  producerid => int64
+  producerepoch => int16
+  transactionresult => BOOLEAN
+
+EndTxnRep => throttletimems errorcode 
+  throttletimems => int32
+  errorcode => int16
+
+WriteTxnMarkersReq => [transactionmarkers] 
+  transactionmarkers => producerid producerepoch transactionresult [topics] coordinatorepoch 
+    producerid => int64
+    producerepoch => int16
+    transactionresult => BOOLEAN
+    topics => topic [partitions] 
+      topic => String
+      partitions => int32
+    coordinatorepoch => int32
+
+WriteTxnMarkersRep => [transactionmarkers] 
+  transactionmarkers => producerid [topics] 
+    producerid => int64
+    topics => topic [partitions] 
+      topic => String
+      partitions => partition errorcode 
+        partition => int32
+        errorcode => int16
+
+TxnOffsetCommitReq => transactionalid consumergroupid producerid producerepoch [topics] 
+  transactionalid => String
+  consumergroupid => String
+  producerid => int64
+  producerepoch => int16
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition offset metadata 
+      partition => int32
+      offset => int64
+      metadata => Nstring
+
+TxnOffsetCommitRep => throttletimems [topics] 
+  throttletimems => int32
+  topics => topic [partitions] 
+    topic => String
+    partitions => partition errorcode 
+      partition => int32
+      errorcode => int16
+
+DescribeAclsReq => resourcetype resourcename principal host operation permissiontype 
+  resourcetype => int8
+  resourcename => Nstring
+  principal => Nstring
+  host => Nstring
+  operation => int8
+  permissiontype => int8
+
+DescribeAclsRep => throttletimems errorcode errormessage [resources] 
+  throttletimems => int32
+  errorcode => int16
+  errormessage => Nstring
+  resources => resourcetype resourcename [acls] 
+    resourcetype => int8
+    resourcename => String
+    acls => principal host operation permissiontype 
+      principal => String
+      host => String
+      operation => int8
+      permissiontype => int8
+
+CreateAclsReq => [creations] 
+  creations => resourcetype resourcename principal host operation permissiontype 
+    resourcetype => int8
+    resourcename => String
+    principal => String
+    host => String
+    operation => int8
+    permissiontype => int8
+
+CreateAclsRep => throttletimems [creationresponses] 
+  throttletimems => int32
+  creationresponses => errorcode errormessage 
+    errorcode => int16
+    errormessage => Nstring
+
+DeleteAclsReq => [filters] 
+  filters => resourcetype resourcename principal host operation permissiontype 
+    resourcetype => int8
+    resourcename => Nstring
+    principal => Nstring
+    host => Nstring
+    operation => int8
+    permissiontype => int8
+
+DeleteAclsRep => throttletimems [filterresponses] 
+  throttletimems => int32
+  filterresponses => errorcode errormessage [matchingacls] 
+    errorcode => int16
+    errormessage => Nstring
+    matchingacls => errorcode errormessage resourcetype resourcename principal host operation permissiontype 
+      errorcode => int16
+      errormessage => Nstring
+      resourcetype => int8
+      resourcename => String
+      principal => String
+      host => String
+      operation => int8
+      permissiontype => int8
+
+DescribeConfigsReq => [resources] 
+  resources => resourcetype resourcename [confignames] 
+    resourcetype => int8
+    resourcename => String
+    confignames => String
+
+DescribeConfigsRep => throttletimems [resources] 
+  throttletimems => int32
+  resources => errorcode errormessage resourcetype resourcename [configentries] 
+    errorcode => int16
+    errormessage => Nstring
+    resourcetype => int8
+    resourcename => String
+    configentries => configname configvalue readonly isdefault issensitive 
+      configname => String
+      configvalue => Nstring
+      readonly => BOOLEAN
+      isdefault => BOOLEAN
+      issensitive => BOOLEAN
+
+AlterConfigsReq => [resources] validateonly 
+  resources => resourcetype resourcename [configentries] 
+    resourcetype => int8
+    resourcename => String
+    configentries => configname configvalue 
+      configname => String
+      configvalue => Nstring
+  validateonly => BOOLEAN
+
+AlterConfigsRep => throttletimems [resources] 
+  throttletimems => int32
+  resources => errorcode errormessage resourcetype resourcename 
+    errorcode => int16
+    errormessage => Nstring
+    resourcetype => int8
+    resourcename => String
+</pre
+pre

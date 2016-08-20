@@ -1,0 +1,253 @@
+
+ "api_versions =>" 
+  api_versions => api_key min_version max_version 
+  api_versions => api_key min_version max_version 
+
+ "brokers =>" 
+  brokers => node_id host port 
+  brokers => node_id host port rack 
+  brokers => node_id host port rack 
+  brokers => node_id host port rack 
+  brokers => node_id host port rack 
+  live_brokers => id host port 
+  live_brokers => id [end_points] 
+  live_brokers => id [end_points] rack 
+  live_brokers => id [end_points] rack 
+
+ "create_topic_requests =>" 
+  create_topic_requests => topic num_partitions replication_factor [replica_assignment] [config_entries] 
+  create_topic_requests => topic num_partitions replication_factor [replica_assignment] [config_entries] 
+  create_topic_requests => topic num_partitions replication_factor [replica_assignment] [config_entries] 
+
+ "creation_responses =>" 
+  creation_responses => error_code error_message 
+
+ "creations =>" 
+  creations => resource_type resource_name principal host operation permission_type 
+
+ "enabled_mechanisms =>" 
+  enabled_mechanisms => STRING
+
+ "errors =>" 
+  topic_errors => topic error_code 
+  topic_errors => topic error_code error_message 
+  topic_errors => topic error_code error_message 
+  errors => topic [partition_errors] 
+    partition_errors => partition error_code 
+
+ "filter_responses =>" 
+  filter_responses => error_code error_message [matching_acls] 
+
+ "filters =>" 
+  filters => resource_type resource_name principal host operation permission_type 
+
+ "group_assignment =>" 
+  group_assignment => member_id member_assignment 
+  group_assignment => member_id member_assignment 
+
+ "group_ids =>" 
+  group_ids => STRING
+  group_ids => STRING
+
+ "group_protocols =>" 
+  group_protocols => protocol_name protocol_metadata 
+  group_protocols => protocol_name protocol_metadata 
+  group_protocols => protocol_name protocol_metadata 
+
+ "groups =>" 
+  groups => error_code group_id state protocol_type protocol [members] 
+  groups => error_code group_id state protocol_type protocol [members] 
+  groups => group_id protocol_type 
+  groups => group_id protocol_type 
+
+ "live_brokers =>" 
+  live_brokers => id host port 
+  live_brokers => id [end_points] 
+  live_brokers => id [end_points] rack 
+  live_brokers => id [end_points] rack 
+
+ "live_leaders =>" 
+  live_leaders => id host port 
+
+ "members =>" 
+  members => member_id member_metadata 
+  members => member_id member_metadata 
+  members => member_id member_metadata 
+    members => member_id client_id client_host member_metadata member_assignment 
+    members => member_id client_id client_host member_metadata member_assignment 
+
+ "partition_states =>" 
+  partition_states => topic partition controller_epoch leader leader_epoch [isr] zk_version [replicas] 
+  partition_states => topic partition controller_epoch leader leader_epoch [isr] zk_version [replicas] 
+  partition_states => topic partition controller_epoch leader leader_epoch [isr] zk_version [replicas] 
+  partition_states => topic partition controller_epoch leader leader_epoch [isr] zk_version [replicas] 
+  partition_states => topic partition controller_epoch leader leader_epoch [isr] zk_version [replicas] 
+
+ "partitions =>" 
+    partitions => partition fetch_offset max_bytes 
+    partitions => partition fetch_offset max_bytes 
+    partitions => partition fetch_offset max_bytes 
+    partitions => partition fetch_offset max_bytes 
+    partitions => partition fetch_offset max_bytes 
+    partitions => partition fetch_offset log_start_offset max_bytes 
+    partitions => partition timestamp max_num_offsets 
+    partitions => partition timestamp 
+    partitions => partition timestamp 
+  partitions => topic partition error_code 
+  delete_partitions => BOOLEAN
+  partitions => topic partition 
+  partitions => topic partition error_code 
+    partitions => partition offset metadata 
+    partitions => partition offset timestamp metadata 
+    partitions => partition offset metadata 
+    partitions => partition offset metadata 
+    partitions => partition 
+    partitions => partition 
+    partitions => partition 
+    partitions => partition 
+    num_partitions => INT32
+    num_partitions => INT32
+    num_partitions => INT32
+    partitions => partition offset 
+    partitions => partition low_watermark error_code 
+    partitions => partition_id leader_epoch 
+    partitions => error_code partition_id end_offset 
+    partitions => INT32
+      partitions => INT32
+      partitions => partition error_code 
+    partitions => partition offset metadata 
+    partitions => partition error_code 
+
+ "partitions_remaining =>" 
+  partitions_remaining => topic partition 
+
+ "resources =>" 
+  resources => resource_type resource_name [acls] 
+  resources => resource_type resource_name [config_names] 
+  resources => error_code error_message resource_type resource_name [config_entries] 
+  resources => resource_type resource_name [config_entries] 
+  resources => error_code error_message resource_type resource_name 
+
+ "responses =>" 
+  responses => topic [partition_responses] 
+    partition_responses => partition error_code base_offset 
+  responses => topic [partition_responses] 
+    partition_responses => partition error_code base_offset 
+  responses => topic [partition_responses] 
+    partition_responses => partition error_code base_offset log_append_time 
+  responses => topic [partition_responses] 
+    partition_responses => partition error_code base_offset log_append_time 
+  responses => topic [partition_responses] 
+    partition_responses => partition_header record_set 
+  responses => topic [partition_responses] 
+    partition_responses => partition_header record_set 
+  responses => topic [partition_responses] 
+    partition_responses => partition_header record_set 
+  responses => topic [partition_responses] 
+    partition_responses => partition_header record_set 
+  responses => topic [partition_responses] 
+    partition_responses => partition_header record_set 
+  responses => topic [partition_responses] 
+    partition_responses => partition_header record_set 
+  responses => topic [partition_responses] 
+    partition_responses => partition error_code [offsets] 
+  responses => topic [partition_responses] 
+    partition_responses => partition error_code timestamp offset 
+  responses => topic [partition_responses] 
+    partition_responses => partition error_code timestamp offset 
+  responses => topic [partition_responses] 
+    partition_responses => partition error_code 
+  responses => topic [partition_responses] 
+    partition_responses => partition error_code 
+  responses => topic [partition_responses] 
+    partition_responses => partition error_code 
+  responses => topic [partition_responses] 
+    partition_responses => partition error_code 
+  responses => topic [partition_responses] 
+    partition_responses => partition offset metadata error_code 
+  responses => topic [partition_responses] 
+    partition_responses => partition offset metadata error_code 
+  responses => topic [partition_responses] 
+    partition_responses => partition offset metadata error_code 
+  responses => topic [partition_responses] 
+    partition_responses => partition offset metadata error_code 
+  creation_responses => error_code error_message 
+  filter_responses => error_code error_message [matching_acls] 
+
+ "topic_data =>" 
+  topic_data => topic [data] 
+  topic_data => topic [data] 
+  topic_data => topic [data] 
+  topic_data => topic [data] 
+
+ "topic_error_codes =>" 
+  topic_error_codes => topic error_code 
+  topic_error_codes => topic error_code 
+
+ "topic_errors =>" 
+  topic_errors => topic error_code 
+  topic_errors => topic error_code error_message 
+  topic_errors => topic error_code error_message 
+
+ "topic_metadata =>" 
+  topic_metadata => topic_error_code topic [partition_metadata] 
+  topic_metadata => topic_error_code topic is_internal [partition_metadata] 
+  topic_metadata => topic_error_code topic is_internal [partition_metadata] 
+  topic_metadata => topic_error_code topic is_internal [partition_metadata] 
+  topic_metadata => topic_error_code topic is_internal [partition_metadata] 
+
+ "topics =>" 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => STRING
+  topics => STRING
+  topics => STRING
+  topics => STRING
+  topics => STRING
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => STRING
+  topics => STRING
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+    topics => topic [partitions] 
+    topics => topic [partitions] 
+  topics => topic [partitions] 
+  topics => topic [partitions] 
+
+ "transaction_markers =>" 
+  transaction_markers => producer_id producer_epoch transaction_result [topics] coordinator_epoch 
+  transaction_markers => producer_id [topics] 
+
+ "cluster_id =>" 
+  cluster_id => NULLABLE_STRING
+  cluster_id => NULLABLE_STRING
+  cluster_id => NULLABLE_STRING
+
+ "controller_id =>" 
+  controller_id => INT32
+  controller_id => INT32
+  controller_id => INT32
+  controller_id => INT32
+  controller_id => INT32
+  controller_id => INT32
+  controller_id => INT32
+  controller_id => INT32
+  controller_id => INT32
+  controller_id => INT32
